@@ -1,4 +1,4 @@
-import untils as Utils
+import utils as Utils
 
 class State:
     def __init__(self, header:str, command_list):
@@ -6,7 +6,15 @@ class State:
         self.__command_list = command_list
         
     def __str__(self):
-        return f'{self.__header}\n{self.__command_list}'
+        string_command_list = ''
+        
+        for command in self.__command_list:
+             string_command_list += command.to_string() + '\n'
+            
+        return f'{self.__header}\n{string_command_list}'
+    
+    def to_string(self):
+        return self
 
 
 class StateManager:
@@ -16,3 +24,10 @@ class StateManager:
     def change_state(self, state:State):
         self.__current_state = state
         Utils.ConsolUtilit.ClearConsole()
+        
+class States:
+    Main = State(f'Сейчас в библиотеке {Library.main().count} книг.', 
+                        [Command(Utils.Actions.Exit, "выхода"),
+                         Command(Utils.Actions.AddBook, "добавления книги"),
+                         Command(Utils.Actions.PrintAll, "вывода всех книг")
+                         ])

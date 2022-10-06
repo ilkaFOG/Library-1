@@ -1,15 +1,37 @@
-from book import Book
-from event import Event
+from library import Library
+from state import State, StateManager 
+import utils as Utils
 
-book = Book("asd", 1927, 'author')
-print(book.to_string())
+library = Library()
+# state_manager = StateManager()
 
-def print_string(*args):
-    for item in args:
-        print(item)
+class Command:
+    def __init__(self, action,description):
+        self.__action = action
+        self.__description = description
+        
+    def __str__(self):
+        return f'Введите {self.__action} для {self.__description}'
+        # return f'{self.__description} - {self.__action}'
+        
+    def to_string(self):
+        return f'Введите {self.__action} для {self.__description}'
+          
+    @property
+    def action(self):
+        return self.__action
+  
 
-start_event = Event()
-start_event.add_listener(print_string)
-    
-start_event.invoke(1)
+library_commands = [Command(Utils.Actions.Exit, "выхода"),
+                    Command(Utils.Actions.AddBook, "добавления книги"),
+                    Command(Utils.Actions.PrintAll, "вывода всех книг")
+                    ]      
 
+
+start_state = State(f'Сейчас в библиотеке {library.count} книг.', 
+                    library_commands)
+
+print(start_state)
+
+while False:
+    pass

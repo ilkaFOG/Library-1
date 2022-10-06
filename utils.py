@@ -6,7 +6,7 @@ class ConsolUtilit:
         clear = lambda: os.system('cls' if os.name=='nt' else 'clear') 
         clear()
   
-class Actions(Enum):
+class Actions:
     Exit = 0
     AddBook = 1
     RemoveBook = 2
