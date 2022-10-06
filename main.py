@@ -12,3 +12,4 @@ start_event = Event()
 start_event.add_listener(print_string)
     
 start_event.invoke(1)
+
