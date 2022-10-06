@@ -1,4 +1,4 @@
-from book import Book
+from model.book import Book
 
 class Library:
     __main = None
@@ -34,4 +34,4 @@ class Library:
         return None 
         
     def get_all(self):
-        return self.__book_list.copy()
+        return iter(self.__book_list)
